@@ -1,0 +1,4 @@
+ImageJ pluginのインストール方法
+
+classファイルをpluginフォルダ内に入れて、ImageJを再起動すれば完了です。
+(javaファイルは入れなくてよい。）
