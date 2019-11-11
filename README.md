@@ -11,6 +11,6 @@ GUI tool for 3D view of stack image
 # Dependencies
 MATLAB
 
-Image processing toolbox
+Image Processing Toolbox
 
 Signal Processing Toolbox
