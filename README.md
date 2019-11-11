@@ -12,7 +12,11 @@ Image Processing Toolbox
 Signal Processing Toolbox
 
 
-# Acknowledgements
+## Author
+Takehiro Ajioka 
+
+
+# Affiliation
 
 Division of System Neuroscience, Kobe University of Graduate School of Medicine
 
