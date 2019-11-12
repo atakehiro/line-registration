@@ -15,6 +15,7 @@ Signal Processing Toolbox
 ## Author
 Takehiro Ajioka 
 
+E-mail:1790651m@stu.kobe-u.ac.jp
 
 # Affiliation
 
