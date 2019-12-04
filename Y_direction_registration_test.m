@@ -1,7 +1,7 @@
-num = 30; %•½ŠŠ‰»‚Ì‚½‚ß‚Ì•½‹Ï‰»ƒtƒBƒ‹ƒ^[‚Ì”ÍˆÍA0‚Ì‚Í•½ŠŠ‰»‚É‚æ‚éŒ¸Z‚È‚µ
-range_x = 15; %‚¸‚ç‚·Å‘å’li{,[j
-corr_thr = 0.80; %ƒYƒŒ‚ğÌ—p‚·‚é‘ŠŠÖŒW”‚ÌÅ¬’l(è‡’l)
-%% tifƒtƒ@ƒCƒ‹‚Ì“Ç‚İæ‚è
+num = 30; %å¹³æ»‘åŒ–ã®ãŸã‚ã®å¹³å‡åŒ–ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã®ç¯„å›²ã€0ã®æ™‚ã¯å¹³æ»‘åŒ–ã«ã‚ˆã‚‹æ¸›ç®—ãªã—
+range_x = 15; %ãšã‚‰ã™æœ€å¤§å€¤ï¼ˆï¼‹,ãƒ¼ï¼‰
+corr_thr = 0.80; %ã‚ºãƒ¬ã‚’æ¡ç”¨ã™ã‚‹ç›¸é–¢ä¿‚æ•°ã®æœ€å°å€¤(é–¾å€¤)
+%% tifãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿å–ã‚Š
 tic
 [file, file_path] = uigetfile('*.tif');
 file_info = imfinfo([file_path, file]);
@@ -9,10 +9,10 @@ d1 = file_info(1).Height;
 d2 = file_info(1).Width;
 bit = file_info(1).BitDepth;
 raw_IMG = double(imread([file_path, file], 1));
-disp('ƒf[ƒ^“Ç‚İæ‚èŠ®—¹')
+disp('ãƒ‡ãƒ¼ã‚¿èª­ã¿å–ã‚Šå®Œäº†')
 toc
 
-%% ƒŒƒWƒXƒg
+%% ãƒ¬ã‚¸ã‚¹ãƒˆ
 tic
 Y_dif = zeros(4,d1-1);
 IMG = raw_IMG;
@@ -41,40 +41,40 @@ for i = 2:d1
         IMG(i,:) = [zeros(1,J),source(1:(d2 - J))];
     end
 end
-disp('ƒŒƒWƒXƒgŠ®—¹')
+disp('ãƒ¬ã‚¸ã‚¹ãƒˆå®Œäº†')
 toc
 
-%% }¦
+%% å›³ç¤º
 figure
 subplot(1,2,1)
 imshow(raw_IMG,[]);
-title("Œ³‰æ‘œ")
+title("å…ƒç”»åƒ")
 subplot(1,2,2)
 imshow(IMG,[]);
-title("ƒŒƒWƒXƒgŒã")
+title("ãƒ¬ã‚¸ã‚¹ãƒˆå¾Œ")
 figure
 imshowpair(raw_IMG,IMG);
-title("d‚Ë‡‚í‚¹")
+title("é‡ã­åˆã‚ã›")
 
 figure
 subplot(2,2,1);
     plot(Y_dif(1,:))
-    title("‘ŠŠÖŒW”")
+    title("ç›¸é–¢ä¿‚æ•°")
 subplot(2,2,2);
     plot(Y_dif(2,:))
-    title("‘Os‚É‘Î‚·‚élag")
+    title("å‰è¡Œã«å¯¾ã™ã‚‹lag")
 subplot(2,2,3)
     plot(Y_dif(3,:))
     hold on
     plot(Smoothed)
     legend('raw data','smoothed')
-    title("—İÏ‚Ìlag")
+    title("ç´¯ç©ã®lag")
 subplot(2,2,4)
     plot(Y_dif(4,:))
-    title("“K—p‚µ‚½xˆÚ“®—Ê")
-%% ‘‚«‚İ
+    title("é©ç”¨ã—ãŸxç§»å‹•é‡")
+%% æ›¸ãè¾¼ã¿
 tic
 IMG = cast(IMG,['uint',num2str(bit)]);
-imwrite(IMG,[file_path, 'Yreged_', file,'.tif']);
-disp('‘‚«‚İŠ®—¹')
+imwrite(IMG,[file_path, 'Yreged_', file]);
+disp('æ›¸ãè¾¼ã¿å®Œäº†')
 toc
