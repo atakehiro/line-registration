@@ -1,7 +1,7 @@
-num = 30; %•½ŠŠ‰»‚Ì‚½‚ß‚Ì•½‹Ï‰»ƒtƒBƒ‹ƒ^[‚Ì”ÍˆÍA0‚Ì‚Í•½ŠŠ‰»‚É‚æ‚éŒ¸Z‚È‚µ
-range_x = 15; %‚¸‚ç‚·Å‘å’li{,[j
-corr_thr = 0.80; %ƒYƒŒ‚ğÌ—p‚·‚é‘ŠŠÖŒW”‚ÌÅ¬’l(è‡’l)
-%% tifƒtƒ@ƒCƒ‹‚Ì“Ç‚İæ‚è
+num = 30; %å¹³æ»‘åŒ–ã®ãŸã‚ã®å¹³å‡åŒ–ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã®ç¯„å›²ã€0ã®æ™‚ã¯å¹³æ»‘åŒ–ã«ã‚ˆã‚‹æ¸›ç®—ãªã—
+range_x = 15; %ãšã‚‰ã™æœ€å¤§å€¤ï¼ˆï¼‹,ãƒ¼ï¼‰
+corr_thr = 0.80; %ã‚ºãƒ¬ã‚’æ¡ç”¨ã™ã‚‹ç›¸é–¢ä¿‚æ•°ã®æœ€å°å€¤(é–¾å€¤)
+%% tifãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿å–ã‚Š
 tic
 [file, file_path] = uigetfile('*.tif');
 file_info = imfinfo([file_path, file]);
@@ -14,9 +14,9 @@ raw_IMG = zeros(d1,d2,T);
 for t = 1:T
     raw_IMG(:,:,t) = imread([file_path, file], t);
 end
-disp('ƒf[ƒ^“Ç‚İæ‚èŠ®—¹')
+disp('ãƒ‡ãƒ¼ã‚¿èª­ã¿å–ã‚Šå®Œäº†')
 toc
-%% ƒŒƒWƒXƒg
+%% ãƒ¬ã‚¸ã‚¹ãƒˆ
 IMG = zeros(d1,d2,T);
 Y_dif = zeros(4,d1-1,T);
 tic
@@ -48,32 +48,32 @@ for i = 1:T
         end
     end
     IMG(:,:,i) = tmp_IMG;
-    disp(['Œ»İ ',num2str(i),'ƒXƒ‰ƒCƒX–Ú‚ğŠ®—¹']);
+    disp(['ç¾åœ¨ ',num2str(i),'ã‚¹ãƒ©ã‚¤ã‚¹ç›®ã‚’å®Œäº†']);
 end
-disp('ƒŒƒWƒXƒgŠ®—¹')
+disp('ãƒ¬ã‚¸ã‚¹ãƒˆå®Œäº†')
 toc
-%% ˆÚ“®—Ê‚Ì}¦
+%% ç§»å‹•é‡ã®å›³ç¤º
 a = squeeze(Y_dif(2,:,:));
 figure
 imagesc(a)
 colorbar
-title("‘Os‚É‘Î‚·‚élag")
+title("å‰è¡Œã«å¯¾ã™ã‚‹lag")
 b = squeeze(Y_dif(4,:,:));
 figure
 imagesc(b)
 colorbar
-title("“K—p‚µ‚½xˆÚ“®—Ê")
-%% ‘‚«‚İ
+title("é©ç”¨ã—ãŸxç§»å‹•é‡")
+%% æ›¸ãè¾¼ã¿
 tic
 IMG = cast(IMG,['uint',num2str(bit)]);
-imwrite(IMG(:,:,1),[file_path, 'Yreged_', file,'.tif']);
+imwrite(IMG(:,:,1),[file_path, 'Yreged_', file]);
 for t = 2:T
-    imwrite(IMG(:,:,t),[file_path, 'Yreged_', file,'.tif'],'WriteMode','append');
+    imwrite(IMG(:,:,t),[file_path, 'Yreged_', file],'WriteMode','append');
 end
-disp('‘‚«‚İŠ®—¹')
+disp('æ›¸ãè¾¼ã¿å®Œäº†')
 toc
 
-%% ƒAƒjƒ[ƒVƒ‡ƒ“•\¦
+%% ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è¡¨ç¤º
 % figure
 % tic
 % for t = 1:T
