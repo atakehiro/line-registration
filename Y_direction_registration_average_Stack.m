@@ -1,8 +1,8 @@
-% •½‹Ï‰æ‘œ‚Éƒ‰ƒCƒ“ƒŒƒWƒXƒg‚ğs‚Á‚ÄA‘S‰æ‘œ‚ğ“¯‚¶‚¾‚¯ˆÚ“®‚³‚¹‚é
-num = 10; %•½ŠŠ‰»‚Ì‚½‚ß‚Ì•½‹Ï‰»ƒtƒBƒ‹ƒ^[‚Ì”ÍˆÍA0‚Ì‚Í•½ŠŠ‰»‚É‚æ‚éŒ¸Z‚È‚µ
-range_x = 15; %‚¸‚ç‚·Å‘å’li{,[j
-corr_thr = 0.80; %ƒYƒŒ‚ğÌ—p‚·‚é‘ŠŠÖŒW”‚ÌÅ¬’l(è‡’l)
-%% tifƒtƒ@ƒCƒ‹‚Ì“Ç‚İæ‚è
+% å¹³å‡ç”»åƒã«ãƒ©ã‚¤ãƒ³ãƒ¬ã‚¸ã‚¹ãƒˆã‚’è¡Œã£ã¦ã€å…¨ç”»åƒã‚’åŒã˜ã ã‘ç§»å‹•ã•ã›ã‚‹
+num = 10; %å¹³æ»‘åŒ–ã®ãŸã‚ã®å¹³å‡åŒ–ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã®ç¯„å›²ã€0ã®æ™‚ã¯å¹³æ»‘åŒ–ã«ã‚ˆã‚‹æ¸›ç®—ãªã—
+range_x = 15; %ãšã‚‰ã™æœ€å¤§å€¤ï¼ˆï¼‹,ãƒ¼ï¼‰
+corr_thr = 0.80; %ã‚ºãƒ¬ã‚’æ¡ç”¨ã™ã‚‹ç›¸é–¢ä¿‚æ•°ã®æœ€å°å€¤(é–¾å€¤)
+%% tifãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿å–ã‚Š
 tic
 [file, file_path] = uigetfile('*.tif');
 file_info = imfinfo([file_path, file]);
@@ -15,9 +15,9 @@ raw_IMG = zeros(d1,d2,T);
 for t = 1:T
     raw_IMG(:,:,t) = imread([file_path, file], t);
 end
-disp('ƒf[ƒ^“Ç‚İæ‚èŠ®—¹')
+disp('ãƒ‡ãƒ¼ã‚¿èª­ã¿å–ã‚Šå®Œäº†')
 toc
-%% ƒŒƒWƒXƒg
+%% ãƒ¬ã‚¸ã‚¹ãƒˆ
 raw_mean_IMG = mean(raw_IMG,3);
 Y_dif = zeros(4,d1-1);
 IMG = zeros(d1,d2,T);
@@ -38,7 +38,7 @@ else
     Smoothed = int8(zeros(1,d1-1));
 end
 Y_dif(4,:) = int8(squeeze(Y_dif(3,:))) - Smoothed;
-disp('•Ï‰»—ÊŒvZ‚ğŠ®—¹');
+disp('å¤‰åŒ–é‡è¨ˆç®—ã‚’å®Œäº†');
 
 for i = 2:d1
     J = Y_dif(4,i-1);
@@ -49,49 +49,49 @@ for i = 2:d1
         IMG(i,:,:) = [zeros(1,J,T),source(1,1:(d2 - J),:)];
     end
 end
-disp('ƒŒƒWƒXƒgŠ®—¹')
+disp('ãƒ¬ã‚¸ã‚¹ãƒˆå®Œäº†')
 toc
-%% }¦
+%% å›³ç¤º
 mean_IMG = mean(IMG,3);
 figure
 subplot(1,2,1)
 imshow(raw_mean_IMG,[]);
-title("Œ³‚Ì•½‹Ï‰æ‘œ")
+title("å…ƒã®å¹³å‡ç”»åƒ")
 subplot(1,2,2)
 imshow(mean_IMG,[]);
-title("ƒŒƒWƒXƒgŒã‚Ì•½‹Ï‰æ‘œ")
+title("ãƒ¬ã‚¸ã‚¹ãƒˆå¾Œã®å¹³å‡ç”»åƒ")
 figure
 imshowpair(raw_mean_IMG,mean_IMG);
-title("d‚Ë‡‚í‚¹")
+title("é‡ã­åˆã‚ã›")
 
 figure
 subplot(2,2,1);
     plot(Y_dif(1,:))
-    title("‘ŠŠÖŒW”")
+    title("ç›¸é–¢ä¿‚æ•°")
 subplot(2,2,2);
     plot(Y_dif(2,:))
-    title("‘Os‚É‘Î‚·‚élag")
+    title("å‰è¡Œã«å¯¾ã™ã‚‹lag")
 subplot(2,2,3)
     plot(Y_dif(3,:))
     hold on
     plot(Smoothed)
     legend('raw data','smoothed')
-    title("—İÏ‚Ìlag")
+    title("ç´¯ç©ã®lag")
 subplot(2,2,4)
     plot(Y_dif(4,:))
-    title("“K—p‚µ‚½xˆÚ“®—Ê")
+    title("é©ç”¨ã—ãŸxç§»å‹•é‡")
 
-%% ‘‚«‚İ
+%% æ›¸ãè¾¼ã¿
 tic
 IMG = cast(IMG,['uint',num2str(bit)]);
-imwrite(IMG(:,:,1),[file_path, 'YAVGreged_', file,'.tif']);
+imwrite(IMG(:,:,1),[file_path, 'YAVGreged_', file]);
 for t = 2:T
-    imwrite(IMG(:,:,t),[file_path, 'YAVGreged_', file,'.tif'],'WriteMode','append');
+    imwrite(IMG(:,:,t),[file_path, 'YAVGreged_', file],'WriteMode','append');
 end
-disp('‘‚«‚İŠ®—¹')
+disp('æ›¸ãè¾¼ã¿å®Œäº†')
 toc
 
-%% ƒAƒjƒ[ƒVƒ‡ƒ“•\¦
+%% ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è¡¨ç¤º
 % figure
 % tic
 % for t = 1:T
