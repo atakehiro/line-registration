@@ -1,9 +1,9 @@
-% ƒ`ƒƒƒ“ƒlƒ‹1‚Ì•Ï‰»—Ê‚É‡‚í‚¹‚Ä•Ï‰»‚³‚¹‚é
-% C1,C2‚ğ•ÊX‚É•Û‘¶
-num = 30; %•½ŠŠ‰»‚Ì‚½‚ß‚Ì•½‹Ï‰»ƒtƒBƒ‹ƒ^[‚Ì”ÍˆÍA0‚Ì‚Í•½ŠŠ‰»‚É‚æ‚éŒ¸Z‚È‚µ
-range_x = 15; %‚¸‚ç‚·Å‘å’li{,[j
-corr_thr = 0.80; %ƒYƒŒ‚ğÌ—p‚·‚é‘ŠŠÖŒW”‚ÌÅ¬’l(è‡’l)
-%% tifƒtƒ@ƒCƒ‹‚Ì“Ç‚İæ‚è
+% ãƒãƒ£ãƒ³ãƒãƒ«1ã®å¤‰åŒ–é‡ã«åˆã‚ã›ã¦å¤‰åŒ–ã•ã›ã‚‹
+% C1,C2ã‚’åˆ¥ã€…ã«ä¿å­˜
+num = 30; %å¹³æ»‘åŒ–ã®ãŸã‚ã®å¹³å‡åŒ–ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã®ç¯„å›²ã€0ã®æ™‚ã¯å¹³æ»‘åŒ–ã«ã‚ˆã‚‹æ¸›ç®—ãªã—
+range_x = 15; %ãšã‚‰ã™æœ€å¤§å€¤ï¼ˆï¼‹,ãƒ¼ï¼‰
+corr_thr = 0.80; %ã‚ºãƒ¬ã‚’æ¡ç”¨ã™ã‚‹ç›¸é–¢ä¿‚æ•°ã®æœ€å°å€¤(é–¾å€¤)
+%% tifãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿å–ã‚Š
 [file, file_path] = uigetfile('*.tif');
 file_info = imfinfo([file_path, file]);
 d1 = file_info(1).Height;
@@ -47,25 +47,25 @@ for t = 1:T/2
             C2_IMG(i,:) = [zeros(1,J),C2_source(1:(d2 - J))];
         end
     end
-    disp(['Œ»İ ',num2str(t),'ƒXƒ‰ƒCƒX–Ú‚ğŠ®—¹']);
+    disp(['ç¾åœ¨ ',num2str(t),'ã‚¹ãƒ©ã‚¤ã‚¹ç›®ã‚’å®Œäº†']);
     result_dif(:,:,t) =  Y_dif;
     imshowpair(C1_IMG, C2_IMG)
     if t == 1
-        imwrite(C1_IMG,[file_path, 'Yreged_C1_', file,'.tif']);
-        imwrite(C2_IMG,[file_path, 'Yreged_C2_', file,'.tif']);
+        imwrite(C1_IMG,[file_path, 'Yreged_C1_', file]);
+        imwrite(C2_IMG,[file_path, 'Yreged_C2_', file]);
     else
-        imwrite(C1_IMG,[file_path, 'Yreged_C1_', file,'.tif'],'WriteMode','append');
-        imwrite(C2_IMG,[file_path, 'Yreged_C2_', file,'.tif'],'WriteMode','append');
+        imwrite(C1_IMG,[file_path, 'Yreged_C1_', file],'WriteMode','append');
+        imwrite(C2_IMG,[file_path, 'Yreged_C2_', file],'WriteMode','append');
     end
 end 
-%% ˆÚ“®—Ê‚Ì}¦
+%% ç§»å‹•é‡ã®å›³ç¤º
 a = squeeze(result_dif(2,:,:));
 figure
 imagesc(a)
 colorbar
-title("‘Os‚É‘Î‚·‚élag")
+title("å‰è¡Œã«å¯¾ã™ã‚‹lag")
 b = squeeze(result_dif(4,:,:));
 figure
 imagesc(b)
 colorbar
-title("“K—p‚µ‚½xˆÚ“®—Ê")
+title("é©ç”¨ã—ãŸxç§»å‹•é‡")
