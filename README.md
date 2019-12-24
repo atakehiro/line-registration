@@ -7,8 +7,6 @@ reconstruct the scan image to modify the slipping to horizontal direction
 ## Dependencies
 MATLAB
 
-Image Processing Toolbox
-
 Signal Processing Toolbox
 
 
