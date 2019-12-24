@@ -7,9 +7,6 @@ reconstruct the scan image to modify the slipping to horizontal direction
 ## Dependencies
 MATLAB
 
-Signal Processing Toolbox
-
-
 ## Author
 Takehiro Ajioka 
 
