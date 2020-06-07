@@ -5,7 +5,7 @@ reconstruct the scan image to modify the slipping to horizontal direction
 
 MATLAB code and ImageJ plugin are available.　Implementation can be done with either side.
 
-MATLABとImageJ pluginの２つのコードがあります。どちらでも好きな方を使ってください。
+MATLABとImageJ pluginの２つのコードがあります。どちらでも好きな方で利用可能です。
 
 ## Dependencies
 MATLAB or ImageJ(Fiji)
